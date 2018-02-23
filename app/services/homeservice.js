@@ -22,37 +22,60 @@
     function getTotalCost(employeesArray) {
       employeesArray.forEach(employee => 
       {
-        employee.cost.personal = getIndividualCost(employee, 'employee');
-        employee.cost.dependents = getIndividualCost(employee.dependents, 'dependent');
+        employee.cost.individual = _getEmployeeCost(employee);
+        employee.cost.dependents = _getDependentCost(employee);
       });
       return employeesArray;
     }
 
-    function getIndividualCost(person, type) {
 
-    	let personCost = 0;
-    	if(type == 'employee') 			//if an employee
-      		personCost = employeeCost;
 
-      	else { 							//if a dependent
-      		personCost = dependentCost;
-      		dependentsArray.forEach(dependent => {
-        	dependent.cost = getCost(dependent, 'dependent');
-        	personCost += dependent.cost;
-      		});
-      	}
+  function _getDependentCost(employee) {
 
-        if(isDiscounted(person))
-        personCost = personCost - (personCost * discount);
-      
-    	return personCost;
-    }
+  	if(_hasDependents(employee)) { 
+ 		
+ 		employee.dependentsArray.forEach(dependent => {
+    	
+    		if(_isDiscounted(dependent)) {
+    			dependent.cost = _applyDiscount(dependentCost);   	
+			}
+    	
+    		else {
+    		dependent.cost = dependentCost;
+			}
+    	   
+    		employee.cost.dependents += dependent.cost; 
+      	
+      	});
+	}
+  }
 
-    function isDiscounted(person) {
+
+  function _getEmployeeCost(employee) { 
+  	
+  	if(_isDiscounted(employee)) {
+  		employee.cost.individual = _applyDiscount(employeeCost);
+  	}
+
+  	else{
+  		employee.cost.individual = employeeCost;
+  	}
+  }
+
+
+  function _hasDependents(person) {
+  	return (typeof person.dependentsArray !== 'undefined' && person.dependentsArray !== null);
+  }
+
+    function _isDiscounted(person) {
     	let firstLetter = person.name.charAt(0).toLowerCase();
       return firstLetter === 'a';
     }
 
+  function _applyDiscount(cost) {
+  	return cost - (cost*discount);
   }
+
+}
 
 })();

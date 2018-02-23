@@ -27,8 +27,8 @@
         id: employeeCount, 
         dependentsArray: [],
         cost: {
-          personal: 0,
-          dependents: 0
+        	individual: 0;
+        	dependents: 0;
         }
         
       });
