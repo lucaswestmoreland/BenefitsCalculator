@@ -5,11 +5,26 @@
 
 	<div class="jumbotron">
 		<h3>Use this interface to calculate the blah blah blah</h3>
-
-		<div class="ewrapper">
+    <fieldset class="card form-group" ng-repeat="employee in employeesArray">
+			<label for=employeeName ng-bind="'Employee ' + employee.id"></label>
 			<input type="text" name="employeeName" class="form-control" placeholder="Employee Name" ng-model="employee.name" required>
+
+			<!--Need our dependent interface here -->
+
+	</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
 			<button type="submit" class="btn btn-primary" role="button" ng-click="addEmployee()">Add Employee</button>
 			<button type="submit" class="btn btn-basic" role="button" ng-click="removeEmployee()">Remove Employee</button>
-		</div>
 	
 	</div>
