@@ -12,7 +12,10 @@ app.config(['$stateProvider', function($stateProvider){
 	.state('table', {
 		url: '/table',
 		templateUrl:'app/templates/table.html',
-		controller: 'TableController'
+		controller: 'TableController',
+		params: {
+			employeesArray: null
+		}
 	})
 }]);
 

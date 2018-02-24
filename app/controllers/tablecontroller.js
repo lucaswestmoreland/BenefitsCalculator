@@ -7,12 +7,18 @@
 
 
 
-			TableController.$inject = ['TableService', '$scope', '$state'];
+			TableController.$inject = ['TableService', '$scope', '$stateParams'];
 
 
-			function TableController (TableService, $scope, $state) {
+			function TableController (TableService, $scope, $stateParams) {
 
-				//$scope.employeesArray = $state.employeesArray;
+				$scope.employeesArray = $stateParams.employeesArray;
+				
+				$scope.getYearlyEmployerExpenses = TableService.getTotalCostYearly($scope.employeesArray);
+				$scope.getMonthlyEmployerExpenses = TableService.getTotalCostMonthly($scope.employeesArray);
+				$scope.getPaycheckEmployerExpenses = TableService.getTotalCostPaycheck($scope.employeesArray);
+
+
 			}
 
 

@@ -1,0 +1,32 @@
+<div class="text-center title">
+	<h1>Here's the damage...</h1>
+ </div>
+
+<div class="container">
+	<div class='jumbotron'>
+	
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Total Income</th>
+			<th>Total Deductions</th>
+			<th>Net Income</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td ng-bind="'$' + getYearlyEmployerExpenses()"></th>
+            <td ng-bind="'$' + getMonthlyEmployerExpenses()"></th>
+            <td ng-bind="'$' + getPaycheckEmployerExpenses()"></td>
+
+		</tr>
+	</tbody>
+
+
+	</table>
+
+</div>
+</div>
