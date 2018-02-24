@@ -35,6 +35,10 @@
     }
 
     function addDependent(employee) {
+
+    	if(employee == null || employee == 'undefined') {
+    		return;
+    	}
       let dependentCount = employee.dependentsArray.length + 1;
       employee.dependentsArray.push({
         name: '',
@@ -45,24 +49,26 @@
        
     function removeEmployee() {
       
-      if($scope.employeesArray.length == 1) return;
+      if($scope.employeesArray.length <= 1) return;
 
       let newestEmployee = $scope.employeesArray.length - 1;
       $scope.employeesArray.splice(newestEmployee);
     }
 
     function removeDependent(employee) {
-      let newestDependent = employee.dependentsArray.length - 1;
-      employee.dependents.splice(lastDependent);
+    	if(employee == null || employee == 'undefined') {
+    		return;
+    	}
+      
+      let lastDependent = employee.dependentsArray.length - 1;
+      employee.dependentsArray.splice(lastDependent);
     }
 
-    function submit(isReturnable) {
-      if(!isReturnable) {
-      	throw "InvalidSubmission";
-      } else {
+    function submit() {
+      
         let updatedEmployees = HomeService.getTotalCost($scope.employeesArray);
-        $state.go('results', { employeesArray: updatedEmployees });
-      }
+        $state.go('table', { employeesArray: updatedEmployees });
+      
     }
   }
 
