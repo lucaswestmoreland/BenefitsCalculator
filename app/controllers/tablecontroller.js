@@ -18,6 +18,9 @@
 				$scope.getMonthlyEmployerExpenses = TableService.getTotalCostMonthly($scope.employeesArray);
 				$scope.getPaycheckEmployerExpenses = TableService.getTotalCostPaycheck($scope.employeesArray);
 
+				$scope.getEmployeeTotalCost = (employee, period) => {return TableService.getEmployeeTotalCost(employee, period);};
+				
+
 
 			}
 

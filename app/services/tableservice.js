@@ -26,25 +26,28 @@ Employees and Dependents
     function getTotalCostYearly(employeesArray) {
       let expense = 0;
       employeesArray.forEach(employee => {
-        expense += getEmployeeTotalCost(employee, 'yearly');
+        expense += parseFloat(getEmployeeTotalCost(employee, 'yearly'));
       });
-      return expense;
+
+      return (expense).toFixed(2);
     }
 
     function getTotalCostMonthly(employeesArray) {
       let expense = 0;
       employeesArray.forEach(employee => {
-        expense += getEmployeeTotalCost(employee, 'monthly');
+        expense += parseFloat(getEmployeeTotalCost(employee, 'monthly'));
       });
-      return expense;
+
+      return (expense).toFixed(2);
     }
     
     function getTotalCostPaycheck(employeesArray) {
       let expense = 0;
       employeesArray.forEach(employee => {
-        expense += getEmployeeTotalCost(employee, 'paycheck');
+        expense += parseFloat(getEmployeeTotalCost(employee, 'paycheck'));
       });
-      return expense;
+
+      return expense.toFixed(2);
     }
 
     function getEmployeeTotalCost(employee, period) {
@@ -52,13 +55,13 @@ Employees and Dependents
       switch(period) {
         
         case 'yearly':
-          return _getEmployeeTotalCostYearly(employee);
+          return parseFloat(_getEmployeeTotalCostYearly(employee),10).toFixed(2);
         
         case 'monthly':
-          return _getEmployeeTotalCostMonthly(employee);
+          return parseFloat(_getEmployeeTotalCostMonthly(employee),10).toFixed(2);
         
         case 'paycheck':
-          return _getEmployeeTotalCostPaycheck(employee);
+          return parseFloat(_getEmployeeTotalCostPaycheck(employee),10).toFixed(2);
         
         default:
           throw "Invalid Pay Period";
@@ -89,7 +92,7 @@ Employees and Dependents
 
 
     function _getEmployeeTotalCostYearly(employee) {
-      return employee.cost.individual + employee.cost.dependents;
+      return (employee.cost.individual + employee.cost.dependents);
     }
 
     function _getEmployeeTotalCostMonthly(employee) {

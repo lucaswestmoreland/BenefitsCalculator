@@ -10,19 +10,30 @@
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
-			<th>Total Income</th>
-			<th>Total Deductions</th>
-			<th>Net Income</th>
+			<th>Yearly Expenses</th>
+			<th>Monthly Expenses</th>
+			<th>Expenses per Paycheck</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		<tr>
-			<td ng-bind="'$' + getYearlyEmployerExpenses()"></th>
-            <td ng-bind="'$' + getMonthlyEmployerExpenses()"></th>
-            <td ng-bind="'$' + getPaycheckEmployerExpenses()"></td>
+		<tr ng-repeat="employee in employeesArray">
+			<td scope="row" ng-bind="employee.id"></td>
+			<td ng-bind="employee.name"></td>
+			<td ng-bind="'$' + getEmployeeTotalCost(employee, 'yearly')"></td>
+			<td ng-bind="'$' + getEmployeeTotalCost(employee, 'monthly')"></td>
+            <td ng-bind="'$' + getEmployeeTotalCost(employee, 'paycheck')"></td>
 
 		</tr>
+
+		<tr class="table-dark">
+        <th>TOTAL</th>
+        <th scope="row"></th>
+        <th ng-bind="'$' + getYearlyEmployerExpenses"></th>
+        <th ng-bind="'$' + getMonthlyEmployerExpenses"></th>
+        <th ng-bind="'$' + getPaycheckEmployerExpenses"></th>
+      </tr>
+
 	</tbody>
 
 

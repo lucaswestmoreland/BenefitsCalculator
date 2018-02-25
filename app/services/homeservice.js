@@ -32,39 +32,40 @@
 
   function _getDependentCost(employee) {
 
+    let modifiedCost = dependentCost;
+
   	if(_hasDependents(employee)) { 
- 		
  		employee.dependentsArray.forEach(dependent => {
     	
     		if(_isDiscounted(dependent)) {
-    			dependent.cost = _applyDiscount(dependentCost);   	
+    			modifiedCost = _applyDiscount(modifiedCost);   	
 			}
-    	
-    		else {
-    		dependent.cost = dependentCost;
-			}
-    	   
-    		employee.cost.dependents += dependent.cost; 
-      	
-      	});
+
+    });
+
 	}
+   else{
+      modifiedCost = 0;
+    }
+    return modifiedCost;
+
   }
 
 
   function _getEmployeeCost(employee) { 
+
+    let modifiedCost = employeeCost;
   	
   	if(_isDiscounted(employee)) {
-  		employee.cost.individual = _applyDiscount(employeeCost);
+  		modifiedCost = _applyDiscount(modifiedCost);
   	}
 
-  	else{
-  		employee.cost.individual = employeeCost;
-  	}
+    return modifiedCost;
   }
 
 
   function _hasDependents(person) {
-  	return (typeof person.dependentsArray !== 'undefined' && person.dependentsArray !== null);
+  	return (person.dependentsArray.length !== 0);
   }
 
     function _isDiscounted(person) {
