@@ -32,14 +32,21 @@
 
   function _getDependentCost(employee) {
 
-    let modifiedCost = dependentCost;
+    let modifiedCost = 0;
 
   	if(_hasDependents(employee)) { 
  		employee.dependentsArray.forEach(dependent => {
+
     	
     		if(_isDiscounted(dependent)) {
-    			modifiedCost = _applyDiscount(modifiedCost);   	
+    			modifiedCost += _applyDiscount(dependentCost);   	
 			}
+
+      else {
+        modifiedCost += dependentCost
+      }
+
+
 
     });
 
@@ -57,7 +64,7 @@
     let modifiedCost = employeeCost;
   	
   	if(_isDiscounted(employee)) {
-  		modifiedCost = _applyDiscount(modifiedCost);
+  		modifiedCost = _applyDiscount(employeeCost);
   	}
 
     return modifiedCost;
