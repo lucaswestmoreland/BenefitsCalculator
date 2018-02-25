@@ -9,7 +9,7 @@
 		<h3>Enter your Employees and their respective Dependents below.</h3>
     	</div>
     <fieldset class="card form-group" ng-repeat="employee in employeesArray">
-			<label for=employeeName ng-bind="'Employee ' + employee.id"></label>
+			<label for=employeeName ng-bind="'Employee #' + employee.id"></label>
 			<input type="text" name="employeeName" class="form-control" placeholder="Employee Name" ng-model="employee.name" required>
 
 
@@ -17,8 +17,8 @@
 
 
 	<div class="dependent-form" ng-repeat="dependent in employee.dependentsArray">
-        	<label for="dependentName" ng-bind="'Dependent ' + dependent.id"></label>
-        	<input type="text" name="dependentName" class="form-control" placeholder="Name" ng-model="dependent.name" required>
+        	<label for="dependentName" ng-bind="'Dependent #' + dependent.id"></label>
+        	<input type="text" name="dependentName" class="form-control" placeholder="Dependent Name" ng-model="dependent.name" required>
 
 </div>
 
