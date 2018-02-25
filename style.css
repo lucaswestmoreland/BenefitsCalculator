@@ -1,9 +1,14 @@
+
+* {
+  font-family: 'Oswald', sans-serif !important;
+}
 body {
-    background-color: white;
+    background-color: #337ab7;
 }
 .title {
 	margin-top: 50px;
 	margin-bottom: 50px;
+	color: #eee;
 }
 
 .dependent-form {
