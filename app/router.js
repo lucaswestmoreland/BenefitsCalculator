@@ -16,6 +16,8 @@ app.config(['$stateProvider', function($stateProvider){
 		params: {
 			employeesArray: null
 		}
-	})
+	});
+
+	
 }]);
 

@@ -1,5 +1,5 @@
 <div class="text-center title">
-	<h1>Here's the damage...</h1>
+	<h1>Expenses:</h1>
  </div>
 
 <div class="container">
@@ -28,7 +28,7 @@
 
 		<tr class="table-dark">
         <th>TOTAL</th>
-        <th scope="row"></th>
+        <th>---</th>
         <th ng-bind="'$' + getYearlyEmployerExpenses"></th>
         <th ng-bind="'$' + getMonthlyEmployerExpenses"></th>
         <th ng-bind="'$' + getPaycheckEmployerExpenses"></th>
@@ -38,6 +38,44 @@
 
 
 	</table>
+
+<div class="more-info-container">
+
+	<h3>More Info</h3>
+
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Number of Dependents</th>
+			<th>Salary</th>
+			<th>Total Deductions</th>
+			<th>Net Income Yearly</th>
+			<th>Net Income Monthly</th>
+			<th>Net Income Paycheck</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="employee in employeesArray">
+			<td scope="row" ng-bind="employee.id"></td>
+			<td ng-bind="employee.name"></td>
+			<td ng-bind="getDependentCount(employee)"></td>
+			<td ng-bind="'$' + getEmployeeBaseSalary"></td>
+			<td ng-bind="'$' + getEmployeeTotalCost(employee, 'yearly')"></td>
+			<td ng-bind="'$' + getEmployeeNetIncome(employee, 'yearly')"></td>
+			<td ng-bind="'$' + getEmployeeNetIncome(employee, 'monthly')"></td>
+            <td ng-bind="'$' + getEmployeeNetIncome(employee, 'paycheck')"></td>
+
+		</tr>
+
+	</tbody>
+
+
+	</table>
+
+</div>
 
 </div>
 </div>

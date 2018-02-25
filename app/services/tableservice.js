@@ -13,7 +13,9 @@
       getTotalCostMonthly: getTotalCostMonthly,
       getTotalCostPaycheck: getTotalCostPaycheck,
       getEmployeeTotalCost: getEmployeeTotalCost,
-      getEmployeeNetIncome: getEmployeeNetIncome
+      getEmployeeNetIncome: getEmployeeNetIncome,
+      getEmployeeBaseSalary: getEmployeeBaseSalary,
+      getDependentCount: getDependentCount
     };
 
     return service;
@@ -25,29 +27,35 @@ Employees and Dependents
 */
     function getTotalCostYearly(employeesArray) {
       let expense = 0;
+      if(_isValid(employeesArray)) {
       employeesArray.forEach(employee => {
         expense += parseFloat(getEmployeeTotalCost(employee, 'yearly'));
       });
+  }
 
       return (expense).toFixed(2);
     }
 
     function getTotalCostMonthly(employeesArray) {
       let expense = 0;
+      if(_isValid(employeesArray)) {
       employeesArray.forEach(employee => {
         expense += parseFloat(getEmployeeTotalCost(employee, 'monthly'));
       });
+    }
 
       return (expense).toFixed(2);
     }
     
     function getTotalCostPaycheck(employeesArray) {
       let expense = 0;
+     if(_isValid(employeesArray)) {
       employeesArray.forEach(employee => {
         expense += parseFloat(getEmployeeTotalCost(employee, 'paycheck'));
       });
+    }
 
-      return expense.toFixed(2);
+      return (expense).toFixed(2);
     }
 
     function getEmployeeTotalCost(employee, period) {
@@ -88,6 +96,19 @@ Employees and Dependents
       }
     }
 
+    function getEmployeeBaseSalary() {
+      return salary;
+    }
+
+    function getDependentCount(employee) {
+      let count = 0;
+      employee.dependentsArray.forEach(dependent => {
+        count++;
+      });
+
+      return count;
+    }
+
 
 
 
@@ -112,6 +133,10 @@ Employees and Dependents
 
     function _getEmployeeNetIncomePaycheck(employee) {
       return (_getEmployeeNetIncomeYearly(employee)/26).toFixed(2);
+    }
+
+    function _isValid(employeesArray) {
+      return (employeesArray !== null);
     }
 
 
