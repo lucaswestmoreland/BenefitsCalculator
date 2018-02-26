@@ -15,7 +15,8 @@
  ### 4. Start up the http-server:
 		$ http_server -c-1
 	
- ### 5. Open your internet browser and navigate to: localhost:8080
+ ### 5. Open your internet browser and navigate to: 
+		localhost:8080
  
 
 ## Technologies Used:
