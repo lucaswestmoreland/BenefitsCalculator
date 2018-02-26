@@ -1,9 +1,9 @@
-(function () {
-  'use strict';
+(function () { 'use strict';
 
   angular
-    .module('app')
-    .factory('HomeService', HomeService);
+  .module('app')
+  .factory('HomeService', HomeService);
+
 
   function HomeService() {
     let employeeCost = 1000;
@@ -11,78 +11,107 @@
     let discount = .10; //10%
 
     let service = {
-      getTotalCost: getTotalCost
+      setTotalCost: setTotalCost
     };
 
     return service;
 
 
 
+/**
+ * sets cost values to each employee in the array based on the 
+ * amount of dependents that are associated with them
+ * @param {object array} employeesArray - a list of employees
+ * @return {object array} employeesArray - a list of employees with updated values
+ */
+ function setTotalCost(employeesArray) {
+  employeesArray.forEach(employee => 
+  {
+    employee.cost.individual = _getEmployeeCost(employee);
+    employee.cost.dependents = _getDependentCost(employee);
+  });
+  return employeesArray;
+}
 
-    function getTotalCost(employeesArray) {
-      employeesArray.forEach(employee => 
-      {
-        employee.cost.individual = _getEmployeeCost(employee);
-        employee.cost.dependents = _getDependentCost(employee);
-      });
-      return employeesArray;
-    }
 
 
 
-  function _getDependentCost(employee) {
+/***---Helper Methods---***/
 
-    let modifiedCost = 0;
 
-  	if(_hasDependents(employee)) { 
- 		employee.dependentsArray.forEach(dependent => {
+/**
+ * gets the sum of the dependents costs associated with
+ * an employee
+ * @param {object} employee
+ * @return {int} cost - total cost of the dependents for that employee
+ */
+function _getDependentCost(employee) {
 
-    	
-    		if(_isDiscounted(dependent)) {
-    			modifiedCost += _applyDiscount(dependentCost);   	
-			}
+  let modifiedCost = 0;
 
+  if(_hasDependents(employee)) { 
+    employee.dependentsArray.forEach(dependent => 
+    {
+      if(_isDiscounted(dependent)) {
+        modifiedCost += _applyDiscount(dependentCost);   	
+      }
       else {
         modifiedCost += dependentCost
       }
-
-
-
     });
-
-	}
-   else{
-      modifiedCost = 0;
-    }
-    return modifiedCost;
-
+  }
+  
+  else{
+    modifiedCost = 0;
   }
 
+  return modifiedCost;
+}
 
-  function _getEmployeeCost(employee) { 
+/**
+ * gets the cost of an employee ignoring dependents
+ * @param {object} employee
+ * @return {int} cost - cost of the individual employee
+ */
+function _getEmployeeCost(employee) { 
 
-    let modifiedCost = employeeCost;
-  	
-  	if(_isDiscounted(employee)) {
-  		modifiedCost = _applyDiscount(employeeCost);
-  	}
+  let modifiedCost = employeeCost;
 
-    return modifiedCost;
+  if(_isDiscounted(employee)) {
+    modifiedCost = _applyDiscount(employeeCost);
   }
 
+  return modifiedCost;
+}
 
-  function _hasDependents(person) {
-  	return (person.dependentsArray.length !== 0);
-  }
+/**
+* checks if an employee has any dependents
+* @param {object} employee
+* @return {boolean} - true if there are dependents
+*/
+function _hasDependents(employee) {
+ return (employee.dependentsArray.length !== 0);
+}
 
-    function _isDiscounted(person) {
-    	let firstLetter = person.name.charAt(0).toLowerCase();
-      return firstLetter === 'a';
-    }
+/**
+* checks if an employee or dependents name starts with 'a', which
+* constitutes a discount
+* @param {object} person 
+* @return {boolean} - true if name starts with 'a'
+*/
+function _isDiscounted(person) {
+ let firstLetter = person.name.charAt(0).toLowerCase();
+ return firstLetter === 'a';
+}
 
-  function _applyDiscount(cost) {
-  	return cost - (cost*discount);
-  }
+/**
+* applies a 10% discount to a cost
+* @param {int} cost
+* @return {int} cost - the updated cost value once the discount has been applied
+*/
+function _applyDiscount(cost) {
+ return cost - (cost*discount);
+}
 
 }
 

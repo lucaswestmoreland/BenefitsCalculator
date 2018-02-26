@@ -1,5 +1,4 @@
-(function () {
-  'use strict';
+(function () { 'use strict';
   
   angular.module('app')
   		 .controller('HomeController', HomeController);
@@ -17,9 +16,12 @@
     $scope.removeEmployee = removeEmployee;
     $scope.removeDependent = removeDependent;
     $scope.submit = submit;
-
     $scope.addEmployee();
 
+    /**
+    * Adds an employee object to the employeesArray
+    * @return {void} updates employeesArray
+    */
     function addEmployee() {
       let employeeCount = $scope.employeesArray.length + 1;
       $scope.employeesArray.push({
@@ -34,9 +36,14 @@
       });
     }
 
+    /**
+    * adds a dependent object to an employee's dependentsArray
+    * @param {object} employee
+    * @return {void} when no employee exists - updates dependentsArray
+    */
     function addDependent(employee) {
 
-    	if(employee == null || employee == 'undefined') {
+    	if(employee === null || employee === 'undefined') { //if that employee doesn't exist
     		return;
     	}
       let dependentCount = employee.dependentsArray.length + 1;
@@ -46,17 +53,26 @@
         cost: 0
       });
     }
-       
+
+    /**
+    * removes the newest employee from the employeesArray
+    * @return {void} when one or less employees exist - updates employeesArray 
+    */   
     function removeEmployee() {
       
-      if($scope.employeesArray.length <= 1) return;
+      if($scope.employeesArray.length <= 1) return; //if you can't remove any more employees
 
       let newestEmployee = $scope.employeesArray.length - 1;
       $scope.employeesArray.splice(newestEmployee);
     }
 
+    /**
+    * removes the newest dependent associated with the given employee
+    * @param {object} employee
+    * @return {void} when employee doesn't exist - updates dependentsArray
+    */
     function removeDependent(employee) {
-    	if(employee == null || employee == 'undefined') {
+    	if(employee == null || employee == 'undefined') { //if that employee doesn't exist
     		return;
     	}
       
@@ -64,10 +80,13 @@
       employee.dependentsArray.splice(lastDependent);
     }
 
+    /**
+    * redirects user to the table page once the information has been entered
+    */
     function submit() {
       
-        let updatedEmployees = HomeService.getTotalCost($scope.employeesArray);
-        $state.go('table', { employeesArray: updatedEmployees });
+        let updatedEmployees = HomeService.setTotalCost($scope.employeesArray);
+        $state.go('table', {employeesArray: updatedEmployees});
       
     }
   }

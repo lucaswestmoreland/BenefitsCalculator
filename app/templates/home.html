@@ -3,58 +3,37 @@
   	</div>
 <form name="employee-form" ng-submit="submit()">
 <div class="container">
-
 	<div class="jumbotron">
+	
 		<div class="text-center">
 		<h3>Enter your Employees and their respective Dependents below.</h3>
     	</div>
+    
     <fieldset class="card form-group" ng-repeat="employee in employeesArray">
-			<label for=employeeName ng-bind="'Employee #' + employee.id"></label>
-			<input type="text" name="employeeName" class="form-control" placeholder="Employee Name" ng-model="employee.name" required>
+		<label for=employeeName ng-bind="'Employee #' + employee.id"></label>
+		<input type="text" name="employeeName" class="form-control" placeholder="Employee Name" ng-model="employee.name" required>
 
-
-
-
-
-	<div class="dependent-form" ng-repeat="dependent in employee.dependentsArray">
+		<div class="dependent-form" ng-repeat="dependent in employee.dependentsArray">
         	<label for="dependentName" ng-bind="'Dependent #' + dependent.id"></label>
         	<input type="text" name="dependentName" class="form-control" placeholder="Dependent Name" ng-model="dependent.name" required>
-
-</div>
-
-<div class="dependent-form">
+		</div>
+		<div class="dependent-form">
 			<button type="button" class="btn btn-xs btn-primary" role="button" ng-click="addDependent(employee)">Add Dependent</button>
 			<button type="button" class="btn btn-xs btn-basic" role="button" ng-click="removeDependent(employee)">Remove Dependent</button>
-
-		
-      		</div>
-			<!--Need our dependent interface here -->
-
+      	</div>
 	</fieldset>
 
 
 	<fieldset class = "form-group text-center">
-
-			<button type="button" class="btn btn-md btn-primary" role="button" ng-click="addEmployee()">Add Employee</button>
-			<button type="button" class="btn btn-md btn-basic" role="button" ng-click="removeEmployee()">Remove Employee</button>
-
+		<button type="button" class="btn btn-md btn-primary" role="button" ng-click="addEmployee()">Add Employee</button>
+		<button type="button" class="btn btn-md btn-basic" role="button" ng-click="removeEmployee()">Remove Employee</button>
 	</fieldset>
 
 
-
-
-
-
-
-
-
-			<button type="submit" role="button" class="btn btn-lg btn-primary btn-block" ng-disabled="employee-form.$invalid">Submit</button>
-
-
-
+	<button type="submit" role="button" class="btn btn-lg btn-primary btn-block" ng-disabled="employee-form.$invalid">Submit</button>
 
 	</div>
-	</div>
+</div>
 </form>
 
 

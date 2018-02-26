@@ -1,17 +1,11 @@
-(function () {
-	'use strict';
+(function () { 'use strict';
 
 	angular.module('app')
 			.controller('TableController', TableController);
 
 
-
-
-			TableController.$inject = ['TableService', '$scope', '$rootScope', '$stateParams', '$state'];
-
-
-			function TableController (TableService, $scope, $rootScope, $stateParams, $state) {
-
+			TableController.$inject = ['TableService', '$scope', '$stateParams'];
+			function TableController (TableService, $scope, $stateParams) {
 
 				$scope.employeesArray = $stateParams.employeesArray;
 				$scope.getYearlyEmployerExpenses = TableService.getTotalCostYearly($scope.employeesArray);
@@ -22,7 +16,7 @@
 				$scope.getEmployeeTotalCost = (employee, period) => {return TableService.getEmployeeTotalCost(employee, period);};
 				$scope.getEmployeeNetIncome = (employee, period) => {return TableService.getEmployeeNetIncome(employee, period);};
 
-				/*Handle Page refresh*/
+				/*handle table page refresh*/
 				if($scope.employeesArray == 'null') {
 					employeesArray = [];
 				}
