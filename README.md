@@ -20,7 +20,11 @@
 
 ## Technologies Used:
 
+ AngularJS
+ Bootstrap
+ NodeJS http-server
 
+ 
 ## Developer Notes:
 
  
