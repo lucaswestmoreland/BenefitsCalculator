@@ -23,6 +23,7 @@
  AngularJS  
  Bootstrap  
  NodeJS http-server  
+ Angular UI-router   
 
  
 ## Developer Notes:
